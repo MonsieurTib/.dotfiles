@@ -3,3 +3,4 @@ plugins-dev.lua
 home/.config/fish/fish_variables
 home/.config/fish/conf.d/secrets.fish
 home/.config/fish/conf.d/vault-funcs.fish
+**/lazy-lock.json
