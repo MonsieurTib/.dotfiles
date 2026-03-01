@@ -6,3 +6,5 @@ macos-titlebar-style = tabs
 
 keybind = cmd+l=next_tab
 keybind = cmd+h=previous_tab
+
+copy-on-select = clipboard
