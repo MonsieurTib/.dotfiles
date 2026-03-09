@@ -9,9 +9,7 @@ It uses GNU Stow for symlink management.
 git clone <repo> ~/.dotfiles
 
 # Symlink configs
-ln -s ~/.dotfiles/home/.config/fish ~/.config/fish
-ln -s ~/.dotfiles/home/.config/nvim ~/.config/nvim
-ln -s ~/.dotfiles/home/.config/ghostty ~/.config/ghostty
+stow -d {path-to-dotfiles} -t ~ home
 ```
 
 ## Structure
