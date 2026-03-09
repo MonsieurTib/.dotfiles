@@ -34,7 +34,7 @@ dap.adapters.coreclr = {
 	id = "coreclr",
 	type = "executable",
 	command = os.getenv("HOME")
-		.. "/.vscode/extensions/ms-dotnettools.csharp-2.100.11-darwin-arm64/.debugger/arm64/vsdbg-ui",
+		.. "/.vscode/extensions/ms-dotnettools.csharp-2.120.3-darwin-arm64/.debugger/arm64/vsdbg-ui",
 	args = { "--interpreter=vscode" },
 	options = {
 		externalTerminal = true,
