@@ -1,37 +1,35 @@
+local languages = {
+	"lua",
+	"javascript",
+	"go",
+	"terraform",
+	"hcl",
+	"zig",
+	"angular",
+	"typescript",
+	"html",
+	"json",
+	"dockerfile",
+	"c_sharp",
+}
+
 return {
 	"nvim-treesitter/nvim-treesitter",
+	lazy = false,
 	build = ":TSUpdate",
 	config = function()
-		local configs = require("nvim-treesitter.configs")
+		require("nvim-treesitter").setup({})
+		require("nvim-treesitter").install(languages)
 
-		configs.setup({
-			ensure_installed = {
-				"lua",
-				"javascript",
-				"go",
-				"terraform",
-				"hcl",
-				"zig",
-				"angular",
-				"typescript",
-				"html",
-				"json",
-				"dockerfile",
-				"c_sharp",
-			},
-			sync_install = false,
-			auto_install = true,
-			highlight = { enable = true },
-			indent = { enable = true },
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<C-space>",
-					node_incremental = "<C-space>",
-					scope_incremental = false,
-					node_decremental = "<bs>",
-				},
-			},
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = languages,
+			callback = function()
+				vim.treesitter.start()
+				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+				vim.wo[0][0].foldmethod = "expr"
+				vim.wo[0][0].foldlevel = 99
+			end,
 		})
 	end,
 }
