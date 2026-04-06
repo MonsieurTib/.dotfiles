@@ -1,11 +1,11 @@
 return {
+  {
 	"mfussenegger/nvim-dap",
 	lazy = true,
 	dependencies = {
 		"rcarriga/nvim-dap-ui",
 		"nvim-neotest/nvim-nio",
 		"leoluz/nvim-dap-go",
-		"TheLeoP/powershell.nvim",
 		"theHamsta/nvim-dap-virtual-text",
 	},
 	keys = {
@@ -52,10 +52,6 @@ return {
 			{ text = "🔴", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
 		)
 
-		require("powershell").setup({
-			bundle_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services",
-		})
-
 		dap.listeners.before.attach.dapui_config = function()
 			dapui.open()
 		end
@@ -65,4 +61,15 @@ return {
 		dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
 		dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
 	end,
+  },
+  -- Loaded only when a PowerShell file is opened, not with DAP
+  {
+	"TheLeoP/powershell.nvim",
+	ft = "ps1",
+	config = function()
+		require("powershell").setup({
+			bundle_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services",
+		})
+	end,
+  },
 }

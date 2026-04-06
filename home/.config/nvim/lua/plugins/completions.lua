@@ -33,9 +33,6 @@ return {
 					nerd_font_variant = "normal",
 				},
 				sources = {
-					per_filetype = {
-						codecompanion = { "codecompanion" },
-					},
 					default = { "snippets", "lsp", "path", "buffer" },
 					providers = {
 						snippets = {

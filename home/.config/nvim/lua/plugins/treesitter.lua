@@ -5,7 +5,6 @@ local languages = {
 	"terraform",
 	"hcl",
 	"zig",
-	"angular",
 	"typescript",
 	"html",
 	"json",
