@@ -17,12 +17,6 @@ return {
         cs = { "csharpier" },
       },
       formatters = {
-        prettier = {
-          prepend_args = { "--tab-width", "2", "--use-tabs", "false" },
-        },
-        prettierd = {
-          prepend_args = { "--tab-width", "2", "--use-tabs", "false" },
-        },
         csharpier = {
           command = vim.fn.expand("~/.dotnet/tools/csharpier"),
           args = { "--write-stdout" },
