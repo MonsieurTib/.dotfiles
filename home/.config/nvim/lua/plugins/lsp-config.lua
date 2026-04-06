@@ -52,30 +52,19 @@ return {
 				"cssls",
 				"angularls",
 				"dockerls",
-				"roslyn",
 				"elixir_ls",
+				-- roslyn is handled by seblyng/roslyn.nvim below
 			}
 
 			for _, server in ipairs(servers_from_lsp_folder) do
-				-- Load the config from lsp/ directory
 				local config_ok, server_config = pcall(require, "lsp." .. server)
 				if config_ok then
-					-- Special handling for roslyn (uses separate plugin)
-					if server == "roslyn" then
-					-- Roslyn is handled by the roslyn.nvim plugin below
-					-- Just load the config for reference/future use
-					else
-						server_config.capabilities = capabilities
-						vim.lsp.config(server, server_config)
-						vim.lsp.enable(server)
-					end
+					server_config.capabilities = capabilities
+					vim.lsp.config(server, server_config)
 				else
-					-- Fallback if config file doesn't exist (except for roslyn)
-					if server ~= "roslyn" then
-						vim.lsp.config(server, { capabilities = capabilities })
-						vim.lsp.enable(server)
-					end
+					vim.lsp.config(server, { capabilities = capabilities })
 				end
+				vim.lsp.enable(server)
 			end
 
 			-- LSP Keymaps and diagnostics
