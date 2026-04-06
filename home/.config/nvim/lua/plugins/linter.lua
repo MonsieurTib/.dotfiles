@@ -13,27 +13,28 @@ return {
         -- sh = { "shellcheck" },
       }
 
-      local config_file = vim.fn.findfile(".golangci.yml", ".;")
-      if config_file == "" then
-        config_file = vim.fn.findfile(".golangci.yaml", ".;")
-      end
+      -- golangci-lint finds its config via its own directory traversal;
+      -- do not inject --config here as it breaks multi-project workflows.
 
-      if config_file ~= "" then
-        lint.linters.golangcilint.args = lint.linters.golangcilint.args or {}
-        table.insert(lint.linters.golangcilint.args, "--config")
-        table.insert(lint.linters.golangcilint.args, config_file)
-      end
-
-      -- Create autocommand to run linting
       local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+
+      -- golangci-lint is slow: only trigger on save, not InsertLeave
+      vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
+        group = lint_augroup,
+        pattern = "*.go",
+        callback = function()
+          if vim.fn.executable("golangci-lint") == 1 then
+            lint.try_lint()
+          end
+        end,
+      })
+
+      -- Fast linters: trigger on InsertLeave too
       vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
         group = lint_augroup,
         callback = function()
-          -- Only lint if golangci-lint is available
           local ft = vim.bo.filetype
-          if ft == "go" and vim.fn.executable("golangci-lint") == 1 then
-            lint.try_lint()
-          elseif ft ~= "go" then
+          if ft ~= "go" then
             lint.try_lint()
           end
         end,
