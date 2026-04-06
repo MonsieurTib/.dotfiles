@@ -8,7 +8,7 @@ return {
         lua = { "stylua" },
         javascript = { "prettierd", "prettier", stop_after_first = true },
         typescript = { "prettierd", "prettier", stop_after_first = true },
-        go = { "goimports", "gofmt", lsp_format = "fallback" },
+        go = { lsp_format = "prefer" }, -- gopls handles imports + gofumpt
         terraform = { "terraform_fmt" },
         json = { "prettierd", "prettier", stop_after_first = true },
         yaml = { "prettierd", "prettier", stop_after_first = true },
