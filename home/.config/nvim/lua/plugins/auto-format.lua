@@ -16,13 +16,6 @@ return {
         css = { "prettierd", "prettier", stop_after_first = true },
         cs = { "csharpier" },
       },
-      formatters = {
-        csharpier = {
-          command = vim.fn.expand("~/.dotnet/tools/csharpier"),
-          args = { "--write-stdout" },
-          stdin = true,
-        },
-      },
       format_on_save = {
         -- These options will be passed to conform.format()
         timeout_ms = 500,
