@@ -38,11 +38,11 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = {},
 		config = function()
-			local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-			local servers_from_lsp_folder = {
+			-- Per-server settings come from lsp/<name>.lua on the runtimepath, which
+			-- vim.lsp.enable() reads itself. Capabilities are registered globally by
+			-- blink.cmp's plugin/blink-cmp.lua via vim.lsp.config("*").
+			vim.lsp.enable({
 				"lua_ls",
 				"gopls",
 				"ts_ls",
@@ -54,18 +54,7 @@ return {
 				"dockerls",
 				"elixir_ls",
 				-- roslyn is handled by seblyng/roslyn.nvim below
-			}
-
-			for _, server in ipairs(servers_from_lsp_folder) do
-				local config_ok, server_config = pcall(require, "lsp." .. server)
-				if config_ok then
-					server_config.capabilities = capabilities
-					vim.lsp.config(server, server_config)
-				else
-					vim.lsp.config(server, { capabilities = capabilities })
-				end
-				vim.lsp.enable(server)
-			end
+			})
 
 			-- LSP Keymaps and diagnostics
 			vim.api.nvim_create_autocmd("LspAttach", {
@@ -135,7 +124,7 @@ return {
 					focusable = false,
 					style = "minimal",
 					border = "rounded",
-					source = "always",
+					source = true,
 					header = "",
 					prefix = "",
 				},
