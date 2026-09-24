@@ -12,6 +12,7 @@ end
 # Initialize Starship
 starship init fish | source
 set -gx PATH $PATH ~/google-cloud-sdk/bin
+set -gx PATH $PATH $HOME/go/bin
 set -gx PATH /usr/bin /usr/local/bin $PATH
 alias csharpier='$HOME/.local/share/nvim/mason/bin/csharpier'
 # Added by OrbStack: command-line tools and integration
