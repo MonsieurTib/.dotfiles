@@ -6,7 +6,6 @@ return {
       local lint = require("lint")
       lint.linters_by_ft = {
         go = { "golangcilint" },
-        lua = { "luacheck" },
         javascript = { "eslint_d" },
         typescript = { "eslint_d" },
         -- python = { "flake8" },

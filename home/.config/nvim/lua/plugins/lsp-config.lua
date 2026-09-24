@@ -1,6 +1,6 @@
 return {
 	{
-		"williamboman/mason.nvim",
+		"mason-org/mason.nvim",
 		config = function()
 			require("mason").setup({
 				registries = {
@@ -25,11 +25,15 @@ return {
 					"css-lsp", -- cssls
 					"html-lsp", -- html
 					"dockerfile-language-server", -- dockerls
+					"roslyn", -- C# LSP (via the Crashdummyy registry)
 					-- Formatters and tools
 					"prettier",
+					"prettierd",
 					"eslint_d",
 					"stylua",
+					"csharpier",
 					"delve",
+					"codelldb",
 					"golangci-lint",
 					"elixir-ls",
 				},
