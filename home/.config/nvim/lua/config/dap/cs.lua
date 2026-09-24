@@ -30,11 +30,22 @@ function RunHandshake(self, request_payload)
 	send_payload(self.client, response)
 end
 
+-- Resolve whichever C# extension version is installed instead of pinning one.
+-- glob() with a list result avoids expand()'s newline-joined string when
+-- several versions coexist; the last entry is the highest version.
+local vsdbg = vim.fn.glob(
+	vim.fn.expand("~/.vscode/extensions/ms-dotnettools.csharp-*/.debugger/arm64/vsdbg-ui"),
+	false,
+	true
+)
+if #vsdbg == 0 then
+	vim.notify("vsdbg not found: install the VS Code C# extension", vim.log.levels.WARN)
+end
+
 dap.adapters.coreclr = {
 	id = "coreclr",
 	type = "executable",
-	command = os.getenv("HOME")
-		.. "/.vscode/extensions/ms-dotnettools.csharp-2.120.3-darwin-arm64/.debugger/arm64/vsdbg-ui",
+	command = vsdbg[#vsdbg],
 	args = { "--interpreter=vscode" },
 	options = {
 		externalTerminal = true,
@@ -71,7 +82,7 @@ dap.configurations.cs = {
 
 			return vim.fn.input("Path: ", dll_path, "file")
 		end,
-		cwd = vim.fn.getcwd(),
+		cwd = "${workspaceFolder}",
 		clientID = "vscode",
 		clientName = "Visual Studio Code",
 		externalTerminal = true,
