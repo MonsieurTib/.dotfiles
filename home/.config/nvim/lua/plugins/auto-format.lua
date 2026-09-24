@@ -18,7 +18,7 @@ return {
       },
       format_on_save = {
         -- These options will be passed to conform.format()
-        timeout_ms = 500,
+        timeout_ms = 3000,
         lsp_format = "fallback",
       },
     })
@@ -27,15 +27,5 @@ return {
     vim.keymap.set({ "n", "v" }, "<leader>fm", function()
       conform.format({ async = false, lsp_format = "fallback" })
     end, { desc = "Format buffer" })
-
-    -- Format on insert leave for modified files
-    vim.api.nvim_create_autocmd({ "InsertLeave" }, {
-      callback = function()
-        if vim.bo.modified and not vim.bo.readonly and vim.bo.filetype ~= "gitcommit" then
-          conform.format({ async = false, lsp_format = "fallback" })
-        end
-      end,
-      desc = "Auto-format on insert leave",
-    })
   end,
 }
