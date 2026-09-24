@@ -77,10 +77,9 @@ return {
 		local next_start_maps = {
 			["]f"] = { "@call.outer", "textobjects", "Next function call start" },
 			["<leader>j"] = { "@function.outer", "textobjects", "Next method/function def start" },
-			["]c"] = { "@class.outer", "textobjects", "Next class start" },
+			["]]"] = { "@class.outer", "textobjects", "Next class start" },
 			["]i"] = { "@conditional.outer", "textobjects", "Next conditional start" },
 			["]l"] = { "@loop.outer", "textobjects", "Next loop start" },
-			["]s"] = { "@local.scope", "locals", "Next scope" },
 			["]z"] = { "@fold", "folds", "Next fold" },
 		}
 		for key, val in pairs(next_start_maps) do
@@ -93,7 +92,7 @@ return {
 		local next_end_maps = {
 			["]F"] = { "@call.outer", "textobjects", "Next function call end" },
 			["]M"] = { "@function.outer", "textobjects", "Next method/function def end" },
-			["]C"] = { "@class.outer", "textobjects", "Next class end" },
+			["]["] = { "@class.outer", "textobjects", "Next class end" },
 			["]I"] = { "@conditional.outer", "textobjects", "Next conditional end" },
 			["]L"] = { "@loop.outer", "textobjects", "Next loop end" },
 		}
@@ -107,7 +106,7 @@ return {
 		local prev_start_maps = {
 			["[f"] = { "@call.outer", "textobjects", "Prev function call start" },
 			["<leader>k"] = { "@function.outer", "textobjects", "Prev method/function def start" },
-			["[c"] = { "@class.outer", "textobjects", "Prev class start" },
+			["[["] = { "@class.outer", "textobjects", "Prev class start" },
 			["[i"] = { "@conditional.outer", "textobjects", "Prev conditional start" },
 			["[l"] = { "@loop.outer", "textobjects", "Prev loop start" },
 		}
@@ -121,7 +120,7 @@ return {
 		local prev_end_maps = {
 			["[F"] = { "@call.outer", "textobjects", "Prev function call end" },
 			["[M"] = { "@function.outer", "textobjects", "Prev method/function def end" },
-			["[C"] = { "@class.outer", "textobjects", "Prev class end" },
+			["[]"] = { "@class.outer", "textobjects", "Prev class end" },
 			["[I"] = { "@conditional.outer", "textobjects", "Prev conditional end" },
 			["[L"] = { "@loop.outer", "textobjects", "Prev loop end" },
 		}
