@@ -2,7 +2,9 @@ return {
 	"nvim-neotest/neotest",
 	lazy = true,
 	dependencies = {
-		"nvim-neotest/neotest-go",
+		"nvim-neotest/nvim-nio",
+		"nvim-lua/plenary.nvim",
+		{ "fredrikaverpil/neotest-golang", version = "*" },
 	},
 	keys = {
 		{ "<leader>tn", function() require("neotest").run.run() end, desc = "Run nearest test" },
@@ -24,10 +26,9 @@ return {
 		}, neotest_ns)
 		require("neotest").setup({
 			adapters = {
-				require("neotest-go")({
-					experimental = {
-						test_table = true,
-					},
+				-- table tests are native here; no experimental flag needed
+				require("neotest-golang")({
+					runner = "gotestsum",
 				}),
 			},
 		})
