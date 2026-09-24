@@ -13,7 +13,7 @@ end
 starship init fish | source
 set -gx PATH $PATH ~/google-cloud-sdk/bin
 set -gx PATH /usr/bin /usr/local/bin $PATH
-alias csharpier='~/.dotnet/tools/csharpier'
+alias csharpier='$HOME/.local/share/nvim/mason/bin/csharpier'
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init2.fish 2>/dev/null || :
