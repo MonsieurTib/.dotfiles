@@ -7,7 +7,7 @@ local function send_payload(client, payload)
 	client.write(msg)
 end
 
-function RunHandshake(self, request_payload)
+local function RunHandshake(self, request_payload)
 	vim.notify("RunHandshake called", vim.log.levels.DEBUG)
 	local cmd = "node ~/.config/nvim/sign.js " .. request_payload.arguments.value
 	local signResult = io.popen(cmd)

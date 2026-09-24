@@ -10,8 +10,6 @@ vim.opt.termguicolors = true -- explicit (Kanagawa requires this)
 -- Better search
 vim.opt.ignorecase = true -- Ignore case when searching
 vim.opt.smartcase = true -- Unless you use uppercase
-vim.opt.hlsearch = true -- Highlight all matches
-vim.opt.incsearch = true -- Show matches as you type
 
 --vim.opt.relativenumber = true -- Relative line numbers for easy jumps
 vim.opt.signcolumn = "yes" -- Always show signcolumn (no layout shift)

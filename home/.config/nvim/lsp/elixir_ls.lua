@@ -1,5 +1,5 @@
 return {
-  cmd = { vim.fn.expand("~/.local/share/nvim/mason/bin/elixir-ls") },
+  cmd = { vim.fn.stdpath("data") .. "/mason/bin/elixir-ls" },
   filetypes = { "elixir", "eelixir", "heex" },
   root_markers = { "mix.exs", ".git" },
   settings = {
